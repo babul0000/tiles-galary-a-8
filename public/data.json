@@ -1,0 +1,122 @@
+[
+    {
+        "id": "tile_001",
+        "title": "Ceramic Blue Tile",
+        "description": "Premium glossy finish ceramic blue tile for modern bathrooms.",
+        "image": "https://images.unsplash.com/photo-1523413555809-0fb8a4a2c70c?q=80&w=800&auto=format&fit=crop",
+        "category": "ceramic",
+        "price": 45.99,
+        "currency": "USD",
+        "dimensions": "60x60 cm",
+        "material": "Ceramic",
+        "inStock": true
+    },
+    {
+        "id": "tile_002",
+        "title": "White Marble Classic",
+        "description": "Elegant white marble tile with grey veins for luxury flooring.",
+        "image": "https://images.unsplash.com/photo-1516533075015-a3838414c3ca?q=80&w=800&auto=format&fit=crop",
+        "category": "marble",
+        "price": 89.50,
+        "currency": "USD",
+        "dimensions": "80x80 cm",
+        "material": "Marble",
+        "inStock": true
+    },
+    {
+        "id": "tile_003",
+        "title": "Terracotta Earthy",
+        "description": "Handmade terracotta tiles for a rustic and warm kitchen vibe.",
+        "image": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop",
+        "category": "clay",
+        "price": 32.00,
+        "currency": "USD",
+        "dimensions": "30x30 cm",
+        "material": "Clay",
+        "inStock": true
+    },
+    {
+        "id": "tile_004",
+        "title": "Emerald Mosaic",
+        "description": "Deep emerald green mosaic tiles perfect for swimming pools.",
+        "image": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
+        "category": "mosaic",
+        "price": 55.75,
+        "currency": "USD",
+        "dimensions": "2x2 cm (mesh)",
+        "material": "Glass",
+        "inStock": false
+    },
+    {
+        "id": "tile_005",
+        "title": "Grey Granite Matte",
+        "description": "Durable matte finish granite for high-traffic outdoor areas.",
+        "image": "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800&auto=format&fit=crop",
+        "category": "granite",
+        "price": 65.00,
+        "currency": "USD",
+        "dimensions": "60x60 cm",
+        "material": "Granite",
+        "inStock": true
+    },
+    {
+        "id": "tile_006",
+        "title": "Moroccan Pattern",
+        "description": "Traditional Moroccan geometric patterns for accent walls.",
+        "image": "https://images.unsplash.com/photo-1595113316349-9fa4ee24f884?q=80&w=800&auto=format&fit=crop",
+        "category": "patterned",
+        "price": 42.20,
+        "currency": "USD",
+        "dimensions": "20x20 cm",
+        "material": "Ceramic",
+        "inStock": true
+    },
+    {
+        "id": "tile_007",
+        "title": "Subway White Brick",
+        "description": "Classic white subway tiles for a clean kitchen backsplash.",
+        "image": "https://images.unsplash.com/photo-1613546714052-f9429431e508?q=80&w=800&auto=format&fit=crop",
+        "category": "subway",
+        "price": 25.99,
+        "currency": "USD",
+        "dimensions": "10x30 cm",
+        "material": "Ceramic",
+        "inStock": true
+    },
+    {
+        "id": "tile_008",
+        "title": "Onyx Black Polished",
+        "description": "High-shine black onyx style for a bold contemporary look.",
+        "image": "https://images.unsplash.com/photo-1503418895522-46f9804cda40?q=80&w=800&auto=format&fit=crop",
+        "category": "marble",
+        "price": 110.00,
+        "currency": "USD",
+        "dimensions": "100x100 cm",
+        "material": "Porcelain",
+        "inStock": true
+    },
+    {
+        "id": "tile_009",
+        "title": "Travertine Beige",
+        "description": "Natural beige travertine with a porous texture for patio.",
+        "image": "https://images.unsplash.com/photo-1544078751-58fee2d8a03b?q=80&w=800&auto=format&fit=crop",
+        "category": "stone",
+        "price": 72.40,
+        "currency": "USD",
+        "dimensions": "45x45 cm",
+        "material": "Travertine",
+        "inStock": false
+    },
+    {
+        "id": "tile_010",
+        "title": "Hexagon Slate Grey",
+        "description": "Modern hexagon shaped tiles for stylish floor designs.",
+        "image": "https://images.unsplash.com/photo-1516156008625-3a9d6067fad5?q=80&w=800&auto=format&fit=crop",
+        "category": "hexagon",
+        "price": 58.00,
+        "currency": "USD",
+        "dimensions": "30x35 cm",
+        "material": "Slate",
+        "inStock": true
+    }
+]
