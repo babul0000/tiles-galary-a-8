@@ -1,5 +1,6 @@
 "use client"
 import { authClient } from '@/lib/auth-client';
+import { Button } from '@heroui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
@@ -16,11 +17,11 @@ const LoginPage = () => {
 
 
         const { data: res, error } = await authClient.signUp.email({
-            name: data.name, 
-            email: data.email, 
+            name: data.name,
+            email: data.email,
             password: data.password,
             image: "https://example.com/image.png",
-            
+
 
 
         });
@@ -38,11 +39,11 @@ const LoginPage = () => {
 
     }
     return (
-        <div className="min-h-screen flex items-center justify-center bg-base-200 px-4">
+        <div className="mt-5 flex items-center justify-center bg-base-200 px-4">
 
             <form
                 onSubmit={handleSubmit(handleLogin)}
-                className="w-full max-w-md bg-base-100 shadow-2xl rounded-xl p-6"
+                className="w-full max-w-md bg-base-100 shadow-md rounded-xl p-6"
             >
 
                 <h1 className="text-2xl font-bold mb-6 text-center">
@@ -87,7 +88,7 @@ const LoginPage = () => {
                     </p>
                 )}
 
-                
+
                 <label className="text-sm font-semibold">Password</label>
                 <input
                     type="password"
@@ -107,9 +108,9 @@ const LoginPage = () => {
                     </p>
                 )}
 
-                <button variant="outline" className="btn btn-neutral w-full mt-5">
+                <Button type="submit" variant="secondary" className="w-full mt-5">
                     Register
-                </button>
+                </Button>
 
             </form>
 
