@@ -13,7 +13,7 @@ const Navbar = () => {
     // }
 
     return (
-        <div className="border-b px-4 z-50 top-0 sticky bg-white/80 backdrop-blur-md">
+        <div className="border-b px-4 z-50 top-0 sticky bg-white/80 backdrop-blur-md transform">
     <nav className="flex justify-between items-center py-4 max-w-7xl mx-auto w-full">
         
         <div className="flex gap-2 items-center">
@@ -21,7 +21,7 @@ const Navbar = () => {
         </div>
 
         
-        <ul className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
+        <ul className=" flex items-center gap-8 text-sm font-medium text-gray-700">
             <li className="hover:text-black transition-colors">
                 <Link href={"/"}>Home</Link>
             </li>
