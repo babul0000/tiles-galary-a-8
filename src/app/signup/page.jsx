@@ -1,54 +1,59 @@
-"use client"
-import { authClient } from '@/lib/auth-client';
-import { Button } from '@heroui/react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import React from 'react';
-import { useForm } from 'react-hook-form';
+"use client";
 
+import { authClient } from "@/lib/auth-client";
+import { Button } from "@heroui/react";
+import { useRouter } from "next/navigation";
+import React from "react";
+import { useForm } from "react-hook-form";
 
-
-const LoginPage = () => {
+const RegisterPage = () => {
     const router = useRouter();
-    const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const handleLogin = async (data) => {
-        console.log(data, errors, "data");
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
+    const handleRegister = async (data) => {
+        console.log(data);
 
-        const { data: res, error } = await authClient.signUp.email({
-            name: data.name,
-            email: data.email,
-            password: data.password,
-            image: "https://example.com/image.png",
+        try {
+            const { data: res, error } = await authClient.signUp.email({
+                name: data.name,
+                email: data.email,
+                password: data.password,
+                image: data.photo, 
+            });
 
+            if (error) {
+                alert(error.message);
+                return;
+            }
 
+            if (res) {
+                alert("Registration SUCCESS ✅");
+                router.push("/signin");
+            }
 
-        });
-        if (error) {
-            alert(Error.message)
+            console.log(res);
+        } catch (err) {
+            console.error(err);
+            alert("Something went wrong ❌");
         }
+    };
 
-        if (res) {
-            alert("Registration SUCCESS")
-            router.push("/signin")
-        }
-
-        console.log(res, error);
-
-
-    }
     return (
-        <div className="mt-5 flex items-center justify-center bg-base-200 px-4">
-
+        <div className=" flex items-center justify-center bg-base-200 px-4 min-h-screen">
             <form
-                onSubmit={handleSubmit(handleLogin)}
+                onSubmit={handleSubmit(handleRegister)}
                 className="w-full max-w-md bg-base-100 shadow-md rounded-xl p-6"
             >
-
                 <h1 className="text-2xl font-bold mb-6 text-center">
                     Create Your Account
                 </h1>
+
+
                 <label className="text-sm font-semibold">Your Name</label>
                 <input
                     type="text"
@@ -88,7 +93,6 @@ const LoginPage = () => {
                     </p>
                 )}
 
-
                 <label className="text-sm font-semibold">Password</label>
                 <input
                     type="password"
@@ -98,8 +102,8 @@ const LoginPage = () => {
                         required: "Password is required",
                         minLength: {
                             value: 6,
-                            message: "Password must be at least 6 characters"
-                        }
+                            message: "Password must be at least 6 characters",
+                        },
                     })}
                 />
                 {errors.password && (
@@ -108,14 +112,13 @@ const LoginPage = () => {
                     </p>
                 )}
 
+
                 <Button type="submit" variant="secondary" className="w-full mt-5">
                     Register
                 </Button>
-
             </form>
-
         </div>
     );
 };
 
-export default LoginPage;
+export default RegisterPage;

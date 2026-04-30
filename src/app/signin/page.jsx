@@ -1,54 +1,52 @@
-"use client"
-import { authClient } from '@/lib/auth-client';
-import { Button } from '@heroui/react';
+"use client";
 
-import React from 'react';
-import { useForm } from 'react-hook-form';
-
-
+import { authClient } from "@/lib/auth-client";
+import { Button } from "@heroui/react";
+import React from "react";
+import { useForm } from "react-hook-form";
 
 const LoginPage = () => {
-    
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
     const handleLogin = async (data) => {
-        console.log(data, errors, "data");
+        console.log(data);
 
+        try {
+            const { data: res, error } = await authClient.signIn.email({
+                email: data.email,
+                password: data.password,
+                callbackURL: "/",
+            });
 
-        const { data: res, error } = await authClient.signIn.email({
-            email: data.email,
-            password: data.password,
-            callbackURL: "/",
+            if (error) {
+                alert(error.message);
+                return;
+            }
 
+            if (res) {
+                alert("Login SUCCESS ✅");
+            }
 
-
-        });
-        if (error) {
-            alert(Error.message)
+            console.log(res);
+        } catch (err) {
+            console.error(err);
+            alert("Something went wrong ❌");
         }
+    };
 
-        if (res) {
-            alert("Login SUCCESS")
-            
-        }
-
-        console.log(res, error);
-
-
-    }
     return (
-        <div className="mt-5 flex items-center justify-center bg-base-200 px-4">
-
+        <div className="mt-5 flex items-center justify-center bg-base-200 px-4 min-h-screen">
             <form
                 onSubmit={handleSubmit(handleLogin)}
                 className="w-full max-w-md bg-base-100 shadow-md rounded-xl p-6"
             >
-
                 <h1 className="text-2xl font-bold mb-6 text-center">
-                    SignIn Your Account
+                    Sign In Your Account
                 </h1>
-                
-
 
 
                 <label className="text-sm font-semibold">Email</label>
@@ -74,8 +72,8 @@ const LoginPage = () => {
                         required: "Password is required",
                         minLength: {
                             value: 6,
-                            message: "Password must be at least 6 characters"
-                        }
+                            message: "Password must be at least 6 characters",
+                        },
                     })}
                 />
                 {errors.password && (
@@ -87,9 +85,7 @@ const LoginPage = () => {
                 <Button type="submit" variant="secondary" className="w-full mt-5">
                     Login
                 </Button>
-
             </form>
-
         </div>
     );
 };
