@@ -20,7 +20,7 @@ const LoginPage = () => {
             name: data.name,
             email: data.email,
             password: data.password,
-            image: "https://example.com/image.png",
+            image: data.photo,
 
 
 
@@ -31,6 +31,7 @@ const LoginPage = () => {
 
         if (res) {
             alert("Registration SUCCESS")
+            
             router.push("/signin")
         }
 

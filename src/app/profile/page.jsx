@@ -1,44 +1,39 @@
 "use client";
 
-
 import { UpdateUserModal } from "@/components/UpdateUserModal";
 import { authClient } from "@/lib/auth-client";
-import { Avatar, Card, Spinner } from "@heroui/react";
+import { Avatar, Card } from "@heroui/react";
+import { redirect } from "next/navigation";
 
 const ProfilePage = () => {
-    const { data: session, isPending } = authClient.useSession();
-    const user = session?.user;
+    const userData = authClient.useSession();
+    const user = userData.data?.user;
 
-
-    if (isPending) {
-        return (
-            <div className="flex justify-center mt-20">
-                <Spinner size="lg" />
-            </div>
-        );
-    }
-
-
-    if (!user) {
-        return <div className="text-center mt-10">Please sign in to view your profile.</div>;
-    }
 
     return (
         <div>
-            <Card className="max-w-96 mx-auto flex flex-col items-center border mt-5 p-6 gap-4">
-                <Avatar 
-                    className="h-24 w-24 text-large" 
-                    src={user?.image} 
-                    name={user?.name?.charAt(0)}
-                    isbordered="true"
-                />
+            <Card className="max-w-96 mx-auto flex flex-col items-center border mt-5">
 
-                <div className="text-center">
-                    <h2 className="text-xl font-bold">{user?.name}</h2>
-                    <p className="text-gray-500">{user?.email}</p>
+                <div className="flex items-center justify-center h-20 w-20 rounded-full border-2 border-primary/30 hover:border-primary transition-all duration-300 shadow-md overflow-hidden bg-gray-50">
+                    <Avatar className="h-full w-full rounded-full">
+                        <Avatar.Image
+                            alt={user?.name || "User"}
+                            src={user?.image}
+                            referrerPolicy="no-referrer"
+                            className="object-cover"
+                        />
+                        <Avatar.Fallback className="bg-primary text-white font-bold text-lg flex items-center justify-center w-full h-full">
+                            {user?.name?.charAt(0).toUpperCase() || "U"}
+                        </Avatar.Fallback>
+                    </Avatar>
                 </div>
 
-                <UpdateUserModal/>
+
+
+                <h2 className="text-xl font-bold">{user?.name}</h2>
+                <p className="text-muted">{user?.email}</p>
+
+                <UpdateUserModal />
             </Card>
         </div>
     );
