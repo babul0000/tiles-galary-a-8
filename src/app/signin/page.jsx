@@ -4,6 +4,7 @@ import { authClient } from "@/lib/auth-client";
 import { Button } from "@heroui/react";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { GrGoogle } from "react-icons/gr";
 
 const LoginPage = () => {
     const {
@@ -36,10 +37,18 @@ const LoginPage = () => {
             console.error(err);
             alert("Something went wrong ❌");
         }
+
+
     };
 
+    const handleGoogleSignIn = async () => {
+        await authClient.signIn.social({
+            provider: 'google'
+        })
+    }
+
     return (
-        <div className="mt-5 flex items-center justify-center bg-base-200 px-4 min-h-screen">
+        <div className="mt-5 flex items-center justify-center bg-base-200 px-4 ">
             <form
                 onSubmit={handleSubmit(handleLogin)}
                 className="w-full max-w-md bg-base-100 shadow-md rounded-xl p-6"
@@ -85,7 +94,11 @@ const LoginPage = () => {
                 <Button type="submit" variant="secondary" className="w-full mt-5">
                     Login
                 </Button>
+                <p className="text-center my-2">OR</p>
+
+                <Button onClick={handleGoogleSignIn} variant="primary" className={'w-full'}><GrGoogle /> Sign In With Google</Button>
             </form>
+
         </div>
     );
 };
