@@ -8,9 +8,9 @@ const CardSection = async() => {
 const users = await res.json()
 
     return (
-        <div>
+        <div className='w-10/12 mx-auto space-y-5'>
             <h1 className='text-2xl font-bold'>Featured Tiles</h1>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-10 mb-5'>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-6 '>
                 {
                     users.slice(0, 4).map(user => <TileCard key={user.id} tile={user}></TileCard>)
                 }
