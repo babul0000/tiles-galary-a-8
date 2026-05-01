@@ -16,8 +16,6 @@ const AllTiles = async ({ searchParams }) => {
     const search = sp?.search || "";
 
     const tiles = await getTiles();
-
-
     const filteredTiles = search
         ? tiles.filter(tile =>
             tile.title.toLowerCase().includes(search.toLowerCase()) ||
