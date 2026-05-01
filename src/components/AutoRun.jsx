@@ -1,25 +1,28 @@
 
+'use client'
+
 import Marquee from "react-fast-marquee";
+import { useState, useEffect } from 'react';
 
-const AutoRun = async () => {
-    const res = await fetch("https://tiles-galary.vercel.app/data.json");
-    const user = await res.json()
+const AutoRun = () => {
+    const [user, setUser] = useState([]);
 
-    //         id: 1,
-    //         name: "Babul Hossan",
-    //         description: "An experienced sample technician with over 8 years of work in the garments industry, skilled in fabric analysis, pattern understanding, and quality control."
-    //     },
-    //     {
-    //         id: 2,
-    //         name: "Rahim Uddin",
-    //         description: "A dedicated professional in the textile sector with strong teamwork, problem-solving ability, and experience in maintaining production efficiency."
-    //     },
-    //     {
-    //         id: 3,
-    //         name: "Karim Sheikh",
-    //         description: "A passionate learner in web development who is exploring modern technologies like JavaScript, React, and Next.js to build real-world applications."
-    //     }
-    // ];
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await fetch("https://tiles-galary.vercel.app/data.json");
+                const data = await res.json();
+                setUser(data);
+            } catch (error) {
+                console.error('Failed to fetch data:', error);
+            }
+        };
+        fetchData();
+    }, []);
+
+    if (user.length === 0) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className="container mx-auto my-10 px-4">
