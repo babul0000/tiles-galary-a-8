@@ -14,7 +14,7 @@ const CardDetails = async ({ params }) => {
     }
 
     return (
-        <div className="max-w-6xl mx-auto p-5">
+        <div className="w-11/12 mx-auto p-2">
             <div className="grid md:grid-cols-2 gap-10 items-center">
 
                 

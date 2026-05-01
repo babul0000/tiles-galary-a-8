@@ -56,7 +56,8 @@ const TileCard = ({ tile }) => {
                     </div>
                     
                     <Link href={`/all-tiles/${tile.id}`}>
-                    <button className="bg-[#0a1d37] text-white p-3 rounded-lg hover:bg-[#c5a36c] transition-colors shadow-lg shadow-blue-900/10">
+                    
+                    <button className="bg-[#0a1d37] text-white p-3 rounded-lg hover:bg-[#981735] transition-colors shadow-lg shadow-blue-900/10">
                         View Details
                     </button></Link>
                 </div>

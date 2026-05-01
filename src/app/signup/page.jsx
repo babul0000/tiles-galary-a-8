@@ -105,6 +105,10 @@ const SignupPage = () => {
                     {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
                 </div>
 
+
+
+                
+
                 <div className="mb-6">
                     <label className="text-sm font-semibold text-gray-700">Password</label>
                     <input
@@ -118,6 +122,9 @@ const SignupPage = () => {
                     />
                     {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
                 </div>
+
+
+
 
                 <Button 
                     type="submit" 

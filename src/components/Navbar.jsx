@@ -10,7 +10,7 @@ const Navbar = () => {
     const pathname = usePathname();
     const session = authClient.useSession();
     const user = session.data?.user;
-    
+
     const [isOpen, setIsOpen] = useState(false);
 
     const handleSignOut = async () => {
@@ -23,24 +23,29 @@ const Navbar = () => {
         });
     };
 
+    const activeClass = (path) =>
+        pathname === path
+            ? "text-white bg-black px-3 py-1.5 rounded-md transition-all"
+            : "bg-secondary text-black px-3 py-1.5 rounded-md";
+
     return (
         <div className="border-b px-4 z-50 top-0 sticky bg-white/80 backdrop-blur-md">
             <nav className="flex justify-between items-center py-4 max-w-7xl mx-auto w-full">
-                
-                {/* Logo Section */}
+
                 <div className="flex gap-2 items-center">
-                    <h3 className="font-black text-xl tracking-tight text-[#0a1d37]">Tile Gallery</h3>
+                    <Link href="/">
+                        <h3 className="font-black text-xl tracking-tight text-[#0a1d37] cursor-pointer">Tile Gallery</h3>
+                    </Link>
                 </div>
 
 
-                <ul className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
-                    <li className="hover:text-black transition-colors"><Link href={"/"}>Home</Link></li>
-                    <li className="hover:text-black transition-colors"><Link href={"/all-tiles"}>All Tiles</Link></li>
-                    <li className="hover:text-black transition-colors"><Link href={"/profile"}>My Profile</Link></li>
+                <ul className="hidden md:flex items-center gap-4 text-sm font-medium text-gray-700">
+                    <li><Link href="/" className={activeClass("/")}>Home</Link></li>
+                    <li><Link href="/all-tiles" className={activeClass("/all-tiles")}>All Tiles</Link></li>
+                    <li><Link href="/profile" className={activeClass("/profile")}>My Profile</Link></li>
                 </ul>
 
                 <div className="flex items-center gap-3">
-
                     {!user ? (
                         <div className="hidden sm:flex gap-3">
                             <Link href={"/signup"}>
@@ -52,15 +57,15 @@ const Navbar = () => {
                         </div>
                     ) : (
                         <div className="flex items-center gap-2">
-                            <div className="flex items-center justify-center h-9 w-9 sm:h-11 sm:w-11 rounded-full border-2">
-                                <Avatar className="h-full w-full rounded-full">
+                            <div className="flex items-center justify-center h-9 w-9 sm:h-11 sm:w-11 rounded-full border-2 overflow-hidden">
+                                <Avatar className="h-full w-full">
                                     <Avatar.Image
                                         alt={user?.name || "User"}
                                         src={user?.image}
                                         referrerPolicy="no-referrer"
                                         className="object-cover"
                                     />
-                                    <Avatar.Fallback className="bg-primary text-white font-bold text-sm sm:text-lg flex items-center justify-center w-full h-full">
+                                    <Avatar.Fallback className="bg-primary text-white font-bold text-sm sm:text-lg">
                                         {user?.name?.charAt(0).toUpperCase() || "U"}
                                     </Avatar.Fallback>
                                 </Avatar>
@@ -69,7 +74,7 @@ const Navbar = () => {
                                 onClick={handleSignOut}
                                 size="sm"
                                 color="danger"
-                                variant="outline"
+                                variant="flat"
                                 className="hidden sm:flex"
                             >
                                 SignOut
@@ -78,8 +83,8 @@ const Navbar = () => {
                     )}
 
 
-                    <button 
-                        className="md:hidden p-2 text-gray-600"
+                    <button
+                        className="md:hidden p-2 text-gray-600 focus:outline-none"
                         onClick={() => setIsOpen(!isOpen)}
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -96,13 +101,16 @@ const Navbar = () => {
 
             {isOpen && (
                 <div className="md:hidden pb-4 px-2 space-y-2 border-t">
-                    <Link href="/" className="block py-2 text-sm font-medium" onClick={() => setIsOpen(false)}>Home</Link>
-                    <Link href="/all-tiles" className="block py-2 text-sm font-medium" onClick={() => setIsOpen(false)}>All Tiles</Link>
-                    <Link href="/profile" className="block py-2 text-sm font-medium" onClick={() => setIsOpen(false)}>My Profile</Link>
+                    <Link href="/" className={`block py-2 text-sm font-medium ${pathname === "/" ? "text-secondary" : ""}`} onClick={() => setIsOpen(false)}>Home</Link>
+                    <Link href="/all-tiles" className={`block py-2 text-sm font-medium ${pathname === "/all-tiles" ? "text-secondary" : ""}`} onClick={() => setIsOpen(false)}>All Tiles</Link>
+                    <Link href="/profile" className={`block py-2 text-sm font-medium ${pathname === "/profile" ? "text-secondary" : ""}`} onClick={() => setIsOpen(false)}>My Profile</Link>
+
                     {!user ? (
-                        <div className="flex flex-col gap-2 pt-2">
-                            <Link href="/signin"><Button className="w-full" size="sm">SignIn</Button></Link>
-                            <Link href="/signup"><Button className="w-full" variant="outline" size="sm">SignUp</Button></Link>
+                        <div className="flex flex-col gap-2 pt-2 ">
+                            <Link href="/signin" onClick={() => setIsOpen(false)}><Button className="w-full bg-black text-white" size="sm">SignIn</Button>
+                            
+                            </Link>
+                            <Link href="/signup" onClick={() => setIsOpen(false)}><Button className="w-full" variant="outline" size="sm">SignUp</Button></Link>
                         </div>
                     ) : (
                         <Button onClick={handleSignOut} color="danger" variant="flat" size="sm" className="w-full">Sign Out</Button>

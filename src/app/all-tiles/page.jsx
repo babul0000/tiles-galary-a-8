@@ -28,9 +28,9 @@ const AllTiles = async ({ searchParams }) => {
         : tiles;
 
     return (
-        <div className='w-10/12 mx-auto'>
+        <div className='w-11/12 mx-auto'>
 
-            <h1 className='text-xl font-bold p-5 text-center mt-10'>
+            <h1 className='text-xl font-bold text-center mt-5'>
                 {search ? `Search Results for "${search}"` : 'All Tiles'}
                 <span className="text-sm font-normal text-gray-500 ml-2">
                     ({filteredTiles.length} {filteredTiles.length === 1 ? 'tile' : 'tiles'})

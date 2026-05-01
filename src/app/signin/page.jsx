@@ -2,14 +2,14 @@
 
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@heroui/react";
-import { useRouter } from "next/navigation"; // ১. useRouter ইমপোর্ট করা হয়েছে
+import { useRouter } from "next/navigation"; 
 import React from "react";
 import { useForm } from "react-hook-form";
 import { GrGoogle } from "react-icons/gr";
 import { toast } from "react-toastify";
 
 const LoginPage = () => {
-    const router = useRouter(); // ২. router ডিফাইন করা হয়েছে
+    const router = useRouter();
     const {
         register,
         handleSubmit,
@@ -17,18 +17,18 @@ const LoginPage = () => {
     } = useForm();
 
     const handleLogin = async (data) => {
-        // লোডিং টোস্ট শুরু
+
         const id = toast.loading("Verifying your credentials...");
 
         try {
             const { data: res, error } = await authClient.signIn.email({
                 email: data.email,
                 password: data.password,
-                // callbackURL: "/", // চাইলে এটি ব্যবহার করতে পারো, তবে router.push ম্যানুয়ালি করা ভালো
+
             });
 
             if (error) {
-                // এরর টোস্ট আপডেট
+
                 toast.update(id, { 
                     render: error.message || "Invalid email or password!", 
                     type: "error", 
@@ -39,7 +39,7 @@ const LoginPage = () => {
             }
 
             if (res) {
-                // সাকসেস টোস্ট আপডেট
+
                 toast.update(id, { 
                     render: "Login SUCCESS ✅ Welcome back!", 
                     type: "success", 
@@ -47,7 +47,7 @@ const LoginPage = () => {
                     autoClose: 2000 
                 });
 
-                // ২ সেকেন্ড পর হোম পেজে রিডাইরেক্ট
+
                 setTimeout(() => {
                     router.push("/");
                 }, 1500);
@@ -120,17 +120,17 @@ const LoginPage = () => {
                     Login
                 </Button>
                 
-                <div className="divider text-gray-400 my-4 text-sm font-medium">OR</div>
+                <div className="text-center p-2">OR</div>
 
                 <Button 
                     onClick={handleGoogleSignIn} 
-                    variant="bordered" 
-                    className="w-full font-semibold border-gray-300 hover:bg-gray-50"
+                    variant="outline" 
+                    className="w-full font-bold border-gray-300 hover:bg-gray-50 text-blue-700"
                 >
-                    <GrGoogle className="text-lg" /> Sign In With Google
+                    <GrGoogle className="text-lg " /> Sign In With Google
                 </Button>
 
-                <p className="text-center text-sm mt-6 text-gray-600">
+                <p className="text-center text-sm mt-3 text-gray-600">
                     Don't have an account? 
                     <span 
                         className="text-secondary font-bold cursor-pointer hover:underline ml-1"
