@@ -1,11 +1,10 @@
 
 import Marquee from "react-fast-marquee";
 
-const AutoRun = async() => {
-const res = await fetch("https://tiles-galary.vercel.app/data.json");
-const user = await res.json()
+const AutoRun = async () => {
+    const res = await fetch("https://tiles-galary.vercel.app/data.json");
+    const user = await res.json()
 
-    //     {
     //         id: 1,
     //         name: "Babul Hossan",
     //         description: "An experienced sample technician with over 8 years of work in the garments industry, skilled in fabric analysis, pattern understanding, and quality control."
@@ -23,16 +22,36 @@ const user = await res.json()
     // ];
 
     return (
-        <div className="flex items-center container my-10 mx-auto py-3 px-2 gap-4 mt-5 bg-[#F3F3F3]">
+        <div className="container mx-auto my-10 px-4">
+            <div className="flex items-center gap-0 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 rounded-2xl overflow-hidden py-1 pr-4">
 
-            <button className="btn btn-error">Latest</button>
-            <Marquee pauseOnHover speed={100}>
-                <p>
-                    {
-                        user.map(use => <span className="mx-8" key={use.id}>{use.description}</span>)
-                    }
-                </p>
-            </Marquee>
+                {/* Left Side Label with Gradient */}
+                <div className="relative px-6 py-3 bg-gradient-to-r from-red-600 to-rose-500 text-white font-bold text-sm uppercase tracking-wider flex items-center justify-center shrink-0 shadow-lg z-10">
+                    <span className="relative z-10">Latest</span>
+                    {/* Decorative arrow shape */}
+                    <div className="absolute top-0 -right-3 h-full w-6 bg-rose-500 skew-x-[-20deg] z-0"></div>
+                </div>
+
+                {/* Marquee Section */}
+                <Marquee
+                    pauseOnHover
+                    speed={80}
+                    gradient={true}
+                    gradientColor="white"
+                    gradientWidth={50}
+                    className="font-medium text-gray-600 italic"
+                >
+                    {user.map((use) => (
+                        <div key={use.id} className="flex items-center gap-2 mx-10 group cursor-pointer">
+                            
+                            <span className="h-2 w-2 bg-red-500 rounded-full group-hover:scale-150 transition-transform"></span>
+                            <span className="group-hover:text-black transition-colors">
+                                {use.description}
+                            </span>
+                        </div>
+                    ))}
+                </Marquee>
+            </div>
         </div>
     );
 };
