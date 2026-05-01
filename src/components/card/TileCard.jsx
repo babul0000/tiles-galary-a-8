@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const TileCard = ({ tile }) => {
-    console.log(tile);
+    // console.log(tile);
     
     return (
         <div className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col">

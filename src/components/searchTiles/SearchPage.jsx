@@ -5,12 +5,16 @@ import { useState } from "react";
 
 const SearchPage = () => {
     const router = useRouter();
+
     const searchParams = useSearchParams();
-    const [searchValue, setSearchValue] = useState(searchParams.get("search") || "");
+
+    const [searchValue, setSearchValue] = useState("");
 
     const handleSearch = (e) => {
+        
         e.preventDefault();
         const params = new URLSearchParams(searchParams);
+        console.log("params")
 
         if (searchValue) {
             params.set("search", searchValue);
@@ -23,6 +27,7 @@ const SearchPage = () => {
     const handleChange = (e) => {
         setSearchValue(e.target.value);
     };
+
 
     return (
         <div className="relative max-w-md mx-auto my-5">
@@ -38,6 +43,7 @@ const SearchPage = () => {
                     <FaSearch className="absolute left-4 top-3 text-gray-400" />
                 </div>
                 <button
+                onClick={handleSearch}
                     type="submit"
                     className="bg-[#0a1d37] text-white px-5 py-2 rounded-r-full hover:bg-[#c5a36c] transition-colors font-medium"
                 >

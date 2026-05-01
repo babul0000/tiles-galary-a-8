@@ -1,12 +1,21 @@
 import TileCard from "@/components/card/TileCard";
 import SearchPage from "@/components/searchTiles/SearchPage";
-import { Suspense } from "react";
 
-const AllTiles = async (searchParams) => {
-    const search = searchParams?.search || "";
-    const res = await fetch("https://tiles-galary.vercel.app/data.json", { cache: "no-store" });
-    const data = await res.json();
-    const tiles = data;
+
+const getTiles = async () => {
+    const res = await fetch("https://tiles-galary.vercel.app/data.json", { 
+        cache: "no-store" 
+    });
+    if (!res.ok) return [];
+    return await res.json();
+};
+
+const AllTiles = async ({ searchParams }) => {
+
+    const sp = await searchParams;
+    const search = sp?.search || "";
+
+    const tiles = await getTiles();
 
 
     const filteredTiles = search
@@ -18,30 +27,31 @@ const AllTiles = async (searchParams) => {
         )
         : tiles;
 
-    console.log(search, "search query");
-    console.log(filteredTiles, "filtered tiles");
-
     return (
-        <div className='w-10/12 mx-auto '>
-            <h1 className='text-xl font-bold p-5'>
+        <div className='w-10/12 mx-auto'>
+
+            <h1 className='text-xl font-bold p-5 text-center mt-10'>
                 {search ? `Search Results for "${search}"` : 'All Tiles'}
                 <span className="text-sm font-normal text-gray-500 ml-2">
                     ({filteredTiles.length} {filteredTiles.length === 1 ? 'tile' : 'tiles'})
                 </span>
             </h1>
 
-            <SearchPage />
+            <div className="mb-10">
+                <SearchPage />
+            </div>
 
-            {filteredTiles.length > 0 ? (
-                <div className='grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-6 '>
-                    {
-                        filteredTiles.map(tile => <TileCard key={tile.id} tile={tile}></TileCard>)
-                    }
-                </div>
-            ) : (
+
+            {filteredTiles.length === 0 ? (
                 <div className="text-center py-20">
                     <p className="text-xl text-gray-400 mb-2">No tiles found</p>
                     <p className="text-gray-400 text-sm">Try searching with different keywords</p>
+                </div>
+            ) : (
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                    {filteredTiles.map(tile => (
+                        <TileCard key={tile.id} tile={tile} />
+                    ))}
                 </div>
             )}
         </div>
