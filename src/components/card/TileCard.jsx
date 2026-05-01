@@ -10,7 +10,7 @@ const TileCard = ({ tile }) => {
             
             <div className="relative h-64 w-full overflow-hidden">
                 <Image
-                    src={tile.image}
+                    src={tile?.image}
                     alt={tile.title}
                     fill
                     className="object-cover "
