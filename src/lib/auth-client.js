@@ -1,9 +1,10 @@
 import { createAuthClient } from "better-auth/react"
 
-const baseURL = process.env.NEXT_PUBLIC_BETTER_AUTH_URL || undefined
+
+const baseURL = "https://tiles-galary-a-8.vercel.app"
 
 export const authClient = createAuthClient({
-    /** The base URL of the server (optional if you're using the same domain) */
+    /** The base URL of the server */
     baseURL,
 })
 

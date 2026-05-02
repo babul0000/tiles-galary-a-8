@@ -1,2 +1,116 @@
 @import "tailwindcss";
-@import "@heroui/styles"; 
+@import "@heroui/styles";
+
+@keyframes myFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.my-animation {
+    animation: myFade 1s ease-out forwards !important;
+}
+
+@keyframes slideUpFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-hero-content {
+    animation: slideUpFadeIn 1s ease-out forwards;
+}
+
+.animate-hero-sub-content {
+    animation: slideUpFadeIn 1s ease-out 0.5s forwards;
+
+    opacity: 0;
+
+}
+
+@keyframes softZoom {
+    0% {
+        transform: scale(1.0);
+    }
+
+    100% {
+        transform: scale(1.05);
+    }
+}
+
+.hero-image-zoom {
+    animation: softZoom 10s ease-out infinite alternate;
+
+}
+
+@keyframes glowingBorder {
+    0% {
+        box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+    }
+
+    100% {
+        box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+    }
+}
+
+.glowing-card {
+    animation: glowingBorder 2s infinite;
+}
+
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.marquee-container {
+    overflow: hidden;
+
+    white-space: nowrap;
+
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: marquee 15s linear infinite;
+
+}
+
+
+
+@keyframes cardAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.9) translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.card-stagger-appear {
+    animation: cardAppear 0.5s ease-out forwards;
+}

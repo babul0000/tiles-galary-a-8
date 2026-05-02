@@ -6,7 +6,7 @@ const TileCard = ({ tile }) => {
     // console.log(tile);
     
     return (
-        <div className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col">
+        <div className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col my-animation">
             
             <div className="relative h-64 w-full overflow-hidden">
                 <Image

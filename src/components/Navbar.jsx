@@ -74,8 +74,8 @@ const Navbar = () => {
                                 onClick={handleSignOut}
                                 size="sm"
                                 color="danger"
-                                variant="flat"
-                                className="hidden sm:flex"
+                                variant="danger"
+                                className="hidden sm:flex "
                             >
                                 SignOut
                             </Button>
