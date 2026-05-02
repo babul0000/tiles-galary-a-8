@@ -4,8 +4,9 @@ import TileCard from './TileCard';
 import Link from 'next/link';
 
 const CardSection = async() => {
-    const res = await fetch("https://tiles-galary.vercel.app/data.json");
-const users = await res.json()
+    const res = await fetch("http://localhost:3000/data.json", { cache: 'no-store' });
+const users = await res.json();
+
 console.log(users);
 
 

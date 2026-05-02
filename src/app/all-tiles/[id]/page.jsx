@@ -4,8 +4,8 @@ import React from 'react';
 const CardDetails = async ({ params }) => {
     const { id } = await params; 
 
-    const res = await fetch("https://tiles-galary.vercel.app/data.json");
-    const users = await res.json();
+    const res = await fetch("http://localhost:3000/data.json", { cache: 'no-store' });
+const users = await res.json();
 
     const tile = users.find(user => user.id == id);
 

@@ -10,8 +10,10 @@ const AutoRun = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch("https://tiles-galary.vercel.app/data.json");
+
+                const res = await fetch("http://localhost:3000/data.json", { cache: 'no-store' });
                 const data = await res.json();
+
                 setUser(data);
             } catch (error) {
                 console.error('Failed to fetch data:', error);
@@ -46,7 +48,7 @@ const AutoRun = () => {
                 >
                     {user.map((use) => (
                         <div key={use.id} className="flex items-center gap-2 mx-10 group cursor-pointer">
-                            
+
                             <span className="h-2 w-2 bg-red-500 rounded-full group-hover:scale-150 transition-transform"></span>
                             <span className="group-hover:text-black transition-colors">
                                 {use.description}

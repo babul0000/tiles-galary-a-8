@@ -22,20 +22,25 @@ const SignupPage = () => {
                 password: data.password,
                 image: data.photo,
             });
+            console.log("Response from Better Auth:", res);
+        console.log("Form Data submitted:", data);
 
 
             if (error) {
+                console.log("Better Auth Error:", error);
                 toast.update(id, { 
                     render: error.message || "Registration failed!", 
                     type: "error", 
                     isLoading: false, 
                     autoClose: 3000 
+                    
                 });
                 return;
             }
 
 
             if (res) {
+                console.log("Full Success Response:", res);
                 await authClient.signOut(); 
 
                 toast.update(id, { 
@@ -57,8 +62,11 @@ const SignupPage = () => {
                 isLoading: false, 
                 autoClose: 3000 
             });
+            console.error("Signup Error:", err);
         }
     }
+    
+    
 
     return (
         <div className="mt-10 mb-10 flex items-center justify-center bg-base-200 px-4">

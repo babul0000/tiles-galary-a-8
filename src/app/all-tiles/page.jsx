@@ -3,9 +3,7 @@ import SearchPage from "@/components/searchTiles/SearchPage";
 
 
 const getTiles = async () => {
-    const res = await fetch("https://tiles-galary.vercel.app/data.json", { 
-        cache: "no-store" 
-    });
+    const res = await fetch("http://localhost:3000/data.json", { cache: 'no-store' });
     if (!res.ok) return [];
     return await res.json();
 };
