@@ -11,7 +11,7 @@ const AutoRun = () => {
         const fetchData = async () => {
             try {
 
-                const res = await fetch("http://localhost:3000/data.json", { cache: 'no-store' });
+                const res = await fetch("https://tiles-galary-a-8.vercel.app/data.json", { cache: 'no-store' });
                 const data = await res.json();
 
                 setUser(data);
